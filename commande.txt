@@ -1,0 +1,45 @@
+/************************************************//
+commande : 
+ =====> npx create-nx-workspace@latest module-fed --preset=apps  
+
+ Creation de monorepot nx avec module de configuration federation.
+ 
+
+/**********************************************************/
+
+====> npx nx add @nx/angular ✅ Objectif :
+Cette commande installe et configure le plugin Angular pour un workspace Nx.
+
+===> npx nx g @nx/angular:host app/shell --remotes=nav, details  ✅ But :
+Créer une application Angular "hôte" (host) avec Module Federation, dans un monorepo Nx, et y connecter des micro-frontends distants (nav et details).
+
+
+
+
+ /*****************************************/
+
+npx nx generate @nx/angular:application (pour créer une app Angular)
+
+npx nx generate @nx/angular:library (pour créer une librairie Angular)
+
+
+/***********************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
