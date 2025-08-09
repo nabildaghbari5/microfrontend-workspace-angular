@@ -1,0 +1,68 @@
+.search-box {
+    font-style: normal;
+    font-size: 30px; /* Tu peux ajuster cette valeur */
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3); /* Effet de profondeur */
+}
+
+.notification-icon {
+  font-size: 1.5rem; // taille plus grande
+  color: white; // orange pour attirer l'attention
+  position: relative;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  
+}
+
+
+.user-img {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+
+  i {
+    font-size: 28px;
+    color: #6c757d;
+    transition: color 0.3s ease;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, #e9ecef, #dee2e6);
+    i {
+      color: #0d6efd;
+    }
+  }
+
+  .available-stats {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+
+    &.online {
+      background-color: #28a745; // vert
+    }
+
+    &.offline {
+      background-color: #6c757d; // gris
+    }
+
+    &.busy {
+      background-color: #dc3545; // rouge
+    }
+  }
+}
+ 
+ 

@@ -1,0 +1,10 @@
+<changeSet id="1" author="you">
+    <createTable tableName="users">
+        <column name="id" type="uuid" autoIncrement="false">
+            <constraints primaryKey="true"/>
+        </column>
+        <column name="username" type="varchar(100)"/>
+        <column name="password" type="varchar(255)"/>
+        <column name="role" type="varchar(20)"/>
+    </createTable>
+</changeSet>

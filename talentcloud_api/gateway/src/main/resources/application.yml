@@ -1,0 +1,87 @@
+spring:
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
+  application:
+    name: gateway-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/realms/talent
+          jwk-set-uri: http://localhost:8180/realms/talent/protocol/openid-connect/certs
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:5173"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+      routes:
+        - id: auth-ms
+          uri: lb://auth-ms
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - RewritePath=/api/auth/(?<segment>.*), /api/auth/${segment}
+
+        - id: profile-ms
+          uri: lb://profile-ms
+          predicates:
+            - Path=/api/v1/**
+          filters:
+            - RewritePath=/api/(?<segment>.*), /${segment}
+
+        # AJOUT: Route pour les fichiers uploads
+        - id: uploads-route
+          uri: lb://profile-ms  # Assumant que profile-ms gère les uploads
+          predicates:
+            - Path=/uploads/**
+          filters:
+            - StripPrefix=0  # Garde le chemin complet /uploads/...
+
+        - id: notification-ms
+          uri: lb://notification-ms
+          predicates:
+            - Path=/api/notification/**
+          filters:
+            - RewritePath=/api/notification/(?<segment>.*), /${segment}
+
+        - id: job-ms
+          uri: lb://job-ms
+          predicates:
+            - Path=/api/jobs/**
+          filters:
+            - RewritePath=/api/jobs/(?<segment>.*), /${segment}
+
+        - id: interview-ms
+          uri: lb://interview-ms
+          predicates:
+            - Path=/api/interview/**
+          filters:
+            - RewritePath=/api/(?<segment>.*), /${segment}
+
+        # Supprimé la duplication de notification-ms
+        - id: notifications-ms
+          uri: lb://notification-ms
+          predicates:
+            - Path=/api/notifications/**
+          filters:
+            - RewritePath=/api/notifications/(?<segment>.*), /${segment}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8222

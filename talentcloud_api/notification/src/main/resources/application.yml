@@ -1,0 +1,54 @@
+server:
+  port: 8084
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/notificationdb
+    username: postgres
+    password: 123
+    driver-class-name: org.postgresql.Driver
+
+    jpa:
+      hibernate:
+        ddl-auto: update   # 🛠️ pour développement → change en `validate` ou `none` en prod
+      show-sql: true
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+  application:
+    name: notification-ms
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: bacemakkari25@gmail.com
+    password: rzgy zyeg kuxg glng
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: notification-consumer-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        # Force reset to latest even if offset exists
+        auto.offset.reset: latest
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+
+logging:
+  level:
+    com.talentcloud.notification_ms: DEBUG
+    org.apache.kafka.clients.consumer: WARN

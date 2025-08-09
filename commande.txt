@@ -25,6 +25,21 @@ npx nx generate @nx/angular:library (pour créer une librairie Angular)
 
 /***********************************************/
 
+===> npx nx serve shell --open --devRemotes=nav,details
+
+
+
+/***********************************
+Creation de librery dans un projt micro-frontent : 
+ 
+== > npx nx g @nx/angular:library --name=shared --buildable --changeDetection=OnPush --standalone --unitTestRunner=none   == > Nx crée un package.json dans ta bibliothèque quand tu utilises l’option --buildable ✅
+
+
+===> ❓Tu veux éviter le package.json ?
+Alors retire l’option --buildable : npx nx g @nx/angular:library --name=shared --standalone --changeDetection=OnPush --unitTestRunner=none
+
+ 
+
 
 
 

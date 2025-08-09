@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: discovery-service
+  cloud:
+    compatibility-verifier:
+      enabled: false  # Disables version check
+    config:
+      enabled: false  # Disables config server check
+
+eureka:
+  server:
+    enable-self-preservation: false  # Disable self-preservation (not recommended for production)
+    renewal-percent-threshold: 0.85  # Default threshold (adjust if needed)
+    eviction-interval-timer-in-ms: 10000  # Check expired instances every 10s
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+server:
+  port: 8761
