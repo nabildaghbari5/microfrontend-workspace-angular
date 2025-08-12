@@ -1,0 +1,182 @@
+<div class="dashboard-header">
+  <div class="left-section">
+    <div class="profile-section">
+      <div class="profile-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2C13.1046 2 14 2.89543 14 4C14 5.10457 13.1046 6 12 6C10.8954 6 10 5.10457 10 4C10 2.89543 10.8954 2 12 2Z" fill="currentColor"/>
+          <path d="M12 8C15.866 8 19 11.134 19 15V16C19 17.1046 18.1046 18 17 18H7C5.89543 18 5 17.1046 5 16V15C5 11.134 8.13401 8 12 8Z" fill="currentColor"/>
+        </svg>
+      </div>
+      <button class="change-logo-btn" (click)="onChangeLogoClick()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 2L8 14M2 8L14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Changer logo
+      </button>
+    </div>
+    <div class="content-section">
+      <h1 class="dashboard-title">Client Dashboard</h1>
+      <p class="dashboard-subtitle">Manage your jobs and candidates efficiently</p>
+    </div>
+  </div>
+  <div class="right-section">
+    <button class="post-job-btn" (click)="onPostJobClick()">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M8 2L8 14M2 8L14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Post New Job
+    </button>
+  </div>
+</div>
+
+
+<!-- Company Profile Section -->
+<div class="company-profile-section">
+  <div class="profile-header">
+    <div class="profile-title">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="currentColor" stroke-width="2" fill="none"/>
+        <path d="M9 9H15M9 13H15M9 17H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Company Profile
+    </div>
+    <div class="info-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="2" fill="none"/>
+        <path d="M10 6V10M10 14H10.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="profile-content">
+    <div class="profile-grid">
+      <div class="profile-field">
+        <label>Company Name</label>
+        <span class="field-value">{{ companyProfile.companyName }}</span>
+      </div>
+      <div class="profile-field">
+        <label>Contact Email</label>
+        <span class="field-value">{{ companyProfile.contactEmail }}</span>
+      </div>
+      <div class="profile-field">
+        <label>About Company</label>
+        <span class="field-value">{{ companyProfile.aboutCompany }}</span>
+      </div>
+      <div class="profile-field">
+        <label>Contact Phone Number</label>
+        <span class="field-value">{{ companyProfile.contactPhoneNumber }}</span>
+      </div>
+      <div class="profile-field">
+        <label>Industry</label>
+        <span class="field-value">{{ companyProfile.industry }}</span>
+      </div>
+      <div class="profile-field">
+        <label>Contact LinkedIn URL</label>
+        <span class="field-value">{{ companyProfile.contactLinkedInURL }}</span>
+      </div>
+      <div class="profile-field">
+        <label>Address</label>
+        <span class="field-value">{{ companyProfile.address }}</span>
+      </div>
+      <div class="profile-field">
+        <label>Contact Website</label>
+        <span class="field-value">{{ companyProfile.contactWebsite }}</span>
+      </div>
+      <div class="profile-field">
+        <label>Country</label>
+        <span class="field-value">{{ companyProfile.country }}</span>
+      </div>
+      <div class="profile-field">
+        <label>Profile Status</label>
+        <span class="status-badge" [class]="'status-' + companyProfile.profileStatus.toLowerCase()">
+          {{ companyProfile.profileStatus }}
+        </span>
+      </div>
+    </div>
+
+    <div class="complete-profile-section">
+      <button class="complete-profile-btn" (click)="onCompleteProfileClick()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M14 2H2C1.44772 2 1 2.44772 1 3V13C1 13.5523 1.44772 14 2 14H14C14.5523 14 15 13.5523 15 13V3C15 2.44772 14.5523 2 14 2Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <path d="M5 6H11M5 8H11M5 10H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Complete Company Profile
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Statistics Section -->
+<div class="stats-section">
+  <div class="stat-card jobs-card">
+    <div class="stat-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M20 7H4C2.89543 7 2 7.89543 2 9V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19V9C22 7.89543 21.1046 7 20 7Z" stroke="currentColor" stroke-width="2" fill="none"/>
+        <path d="M16 21V5C16 3.89543 15.1046 3 14 3H10C8.89543 3 8 3.89543 8 5V21" stroke="currentColor" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">{{ stats.totalJobs }}</div>
+      <div class="stat-label">Total Jobs</div>
+    </div>
+  </div>
+
+  <div class="stat-card applications-card">
+    <div class="stat-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" fill="none"/>
+        <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+        <path d="M23 21V19C23 18.1645 22.7155 17.3541 22.2094 16.7018C21.7033 16.0494 20.9999 15.5901 20.2 15.4" stroke="currentColor" stroke-width="2" fill="none"/>
+        <path d="M16 3.13C16.8003 3.35 17.504 3.81 18.0101 4.46C18.5162 5.11 18.8007 5.92 18.8007 6.755C18.8007 7.59 18.5162 8.4 18.0101 9.05C17.504 9.7 16.8003 10.16 16 10.38" stroke="currentColor" stroke-width="2" fill="none"/>
+      </svg>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">{{ stats.totalApplications }}</div>
+      <div class="stat-label">Total Applications</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Job Postings Section -->
+<div class="job-postings-section">
+  <div class="job-postings-header">
+    <div class="header-left">
+      <div class="header-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M20 7H4C2.89543 7 2 7.89543 2 9V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19V9C22 7.89543 21.1046 7 20 7Z" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M16 21V5C16 3.89543 15.1046 3 14 3H10C8.89543 3 8 3.89543 8 5V21" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+      <h2 class="section-title">Your Job Postings</h2>
+    </div>
+    <button class="new-job-btn" (click)="onNewJobClick()">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M8 2L8 14M2 8L14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      New Job
+    </button>
+  </div>
+
+  <div class="job-postings-content">
+    <div class="empty-state">
+      <div class="empty-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <path d="M40 14H8C5.79086 14 4 15.7909 4 18V38C4 40.2091 5.79086 42 8 42H40C42.2091 42 44 40.2091 44 38V18C44 15.7909 42.2091 14 40 14Z" stroke="currentColor" stroke-width="3" fill="none"/>
+          <path d="M32 42V10C32 7.79086 30.2091 6 28 6H20C17.7909 6 16 7.79086 16 10V42" stroke="currentColor" stroke-width="3" fill="none"/>
+        </svg>
+      </div>
+      <h3 class="empty-title">No job postings yet</h3>
+      <p class="empty-description">
+        Get started by creating your first job posting and start<br>
+        attracting top talent.
+      </p>
+      <button class="post-first-job-btn" (click)="onPostFirstJobClick()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 2L8 14M2 8L14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Post Your First Job
+      </button>
+    </div>
+  </div>
+</div>
