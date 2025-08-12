@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,8 +8,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './dashboard.html',
   styleUrls:  ['./dashboard.scss'], 
 })
-export class Dashboard {
-  
+export class Dashboard implements OnInit{
+     
   companyProfile = {
     companyName: 'Not provided',
     contactEmail: 'Not provided',
@@ -27,6 +28,15 @@ export class Dashboard {
     totalApplications: 0
   };
   
+  constructor(
+    private router:Router
+  ){
+
+  }
+
+  ngOnInit(): void {
+  }
+
   onChangeLogoClick(): void {
     console.log('Change logo clicked');
     // Logique pour changer le logo
@@ -38,8 +48,7 @@ export class Dashboard {
   }
 
   onCompleteProfileClick(): void {
-    console.log('Complete company profile clicked');
-    // Logique pour compléter le profil de l'entreprise
+    this.router.navigate(['/company/edit-profil'])
   }
 
   onPostFirstJobClick(): void {

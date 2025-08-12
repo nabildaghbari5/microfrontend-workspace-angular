@@ -1,0 +1,152 @@
+<div class="new-job-container">
+  <!-- Header Section -->
+  <div class="header-section">
+    <div class="header-icon">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9,22 9,12 15,12 15,22"/>
+      </svg>
+    </div>
+    <div class="header-content">
+      <h1>Post a New Job</h1>
+      <p>Fill out the form below to create a new job posting</p>
+    </div>
+  </div>
+
+  <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="job-form">
+    <!-- Job Title -->
+    <div class="form-group">
+      <label for="jobTitle">Job Title</label>
+      <input
+        type="text"
+        id="jobTitle"
+        formControlName="jobTitle"
+        [class.error]="getFieldError('jobTitle')"
+        placeholder="e.g., Senior Frontend Developer"
+      />
+      <div class="error-message" *ngIf="getFieldError('jobTitle')">
+        {{ getFieldError('jobTitle') }}
+      </div>
+    </div>
+
+    <!-- Job Description -->
+    <div class="form-group">
+      <label for="jobDescription">Job Description</label>
+      <textarea
+        id="jobDescription"
+        formControlName="jobDescription"
+        [class.error]="getFieldError('jobDescription')"
+        placeholder="Provide a detailed description of the job role and responsibilities"
+        rows="6"
+      ></textarea>
+      <div class="error-message" *ngIf="getFieldError('jobDescription')">
+        {{ getFieldError('jobDescription') }}
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input
+        type="text"
+        id="location"
+        formControlName="location"
+        [class.error]="getFieldError('location')"
+        placeholder="e.g., Remote, New York, NY, etc."
+      />
+      <div class="error-message" *ngIf="getFieldError('location')">
+        {{ getFieldError('location') }}
+      </div>
+    </div>
+
+    <!-- Salary Range -->
+    <div class="form-group">
+      <label for="salaryRange">Salary Range (Optional)</label>
+      <input
+        type="text"
+        id="salaryRange"
+        formControlName="salaryRange"
+        placeholder="80,000-100,000"
+      />
+    </div>
+
+    <!-- Required Experience -->
+    <div class="form-group">
+      <label for="requiredExperience">Required Experience</label>
+      <select
+        id="requiredExperience"
+        formControlName="requiredExperience"
+        [class.error]="getFieldError('requiredExperience')"
+      >
+        <option value="">Select experience level</option>
+        <option *ngFor="let level of experienceLevels" [value]="level">{{ level }}</option>
+      </select>
+      <div class="error-message" *ngIf="getFieldError('requiredExperience')">
+        {{ getFieldError('requiredExperience') }}
+      </div>
+    </div>
+
+    <!-- Employment Type -->
+    <div class="form-group">
+      <label for="employmentType">Employment Type</label>
+      <select
+        id="employmentType"
+        formControlName="employmentType"
+        [class.error]="getFieldError('employmentType')"
+      >
+        <option *ngFor="let type of employmentTypes" [value]="type">{{ type }}</option>
+      </select>
+      <div class="error-message" *ngIf="getFieldError('employmentType')">
+        {{ getFieldError('employmentType') }}
+      </div>
+    </div>
+
+    <!-- Required Skills -->
+    <div class="form-group skills-section">
+      <label>Required Skills</label>
+      <p class="skills-description">Add specific skills required for this role</p>
+      
+      <div class="skills-list" *ngIf="skills.length > 0">
+        <div class="skill-item" *ngFor="let skill of skills.controls; let i = index">
+           <input
+      type="text"
+      [formControlName]="i"
+      [class.error]="getSkillError(i)"
+      placeholder="Enter skill name"
+    />
+          <button type="button" class="remove-skill-btn" (click)="removeSkill(i)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+          <div class="error-message" *ngIf="getSkillError(i)">
+            {{ getSkillError(i) }}
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="add-skill-btn" (click)="addSkill()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+        Add Skill
+      </button>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button type="button" class="btn-secondary" (click)="onCancel()">
+        Cancel
+      </button>
+      <button type="submit" class="btn-primary" [disabled]="jobForm.invalid">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9,22 9,12 15,12 15,22"/>
+        </svg>
+        Post Job
+      </button>
+    </div>
+  </form>
+</div>
